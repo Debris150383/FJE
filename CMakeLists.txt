@@ -4,7 +4,7 @@ add_subdirectory(external/json)
 add_subdirectory(external/argparse)
 
 
-add_executable(FJE ${SOURCES} main.cpp)
+add_executable(FJE ${SOURCES} )
 target_link_libraries(FJE nlohmann_json::nlohmann_json argparse)
 
 set_target_properties(FJE PROPERTIES

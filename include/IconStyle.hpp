@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 
-
 class Icon {
 public:
     std::string name;
