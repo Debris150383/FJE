@@ -19,10 +19,10 @@ make
 ```
 Usage: FJE [--help] [--version] [-f VAR] [--style VAR] [--icon VAR] [--output VAR]
 
-Optional arguments:
+Optional arguments:  
   -h, --help     shows help message and exits  
-  -v, --version  prints version information and exits 
-  -f             json file to be parsed 
-  -s, --style    Choose an icon style: rectangle or tree [nargs=0..1] [default: "tree"]
-  -i, --icon     Choose an icon from the following pokerface star [nargs=0..1] [default: "star"]
+  -v, --version  prints version information and exits  
+  -f             json file to be parsed  
+  -s, --style    Choose an icon style: rectangle or tree [nargs=0..1] [default: "tree"]  
+  -i, --icon     Choose an icon from the following pokerface star [nargs=0..1] [default: "star"]  
   -o, --output   Output to a file [nargs=0..1] [default: ""]
