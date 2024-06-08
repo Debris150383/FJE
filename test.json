@@ -1,0 +1,40 @@
+{
+  "employees": [
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "age": 30,
+      "address": {
+        "street": "123 Main St",
+        "city": "Springfield",
+        "state": "IL",
+        "postalCode": "62704"
+      },
+      "phoneNumbers": [
+        { "type": "home", "number": "212 555-1234" },
+        { "type": "office", "number": "646 555-4567" }
+      ],
+      "children": [],
+      "spouse": null
+    }
+  ],
+  "company": {
+    "name": "Doe Enterprises",
+    "address": {
+      "street": "789 Elm St",
+      "city": "Springfield",
+      "state": "IL",
+      "postalCode": "62704"
+    }
+  },
+  "product": {
+    "id": "p1",
+    "name": "Product 1",
+    "price": 29.99,
+    "tags": ["tag1", "tag2", "tag3"],
+    "stock": {
+      "warehouse": 300,
+      "retail": 60
+    }
+  }
+}
