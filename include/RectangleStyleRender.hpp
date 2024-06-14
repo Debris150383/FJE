@@ -5,9 +5,6 @@
 
 class RectangleStyleRender : public StyleRender {
  public:
-  //void render(JsonTree& j) override;
-  //void render_object(json::object_t& obj) override;
-  //void render_array(json::array_t& arr) override;
 
   void render_line(std::string key, std::string val, unsigned level ,bool isLast) override;
   void reset() override { lines.clear(); maxLineLength = 0; }
