@@ -1,21 +1,25 @@
+#include <JsonNode.hpp>
+#include <JsonVisitor.hpp>
+#include <StyleRender.hpp>
 #include <argparse/argparse.hpp>
 #include <cassert>
 #include <fstream>
-#include <memory>
 #include <nlohmann/json.hpp>
 #include <vector>
-
-#include "FunnyJsonExplorer.hpp"
+#include <locale.h>
 #include "IconStyle.hpp"
-#include "JsonStyle.hpp"
-#include "Node.hpp"
+#include "RectangleStyleRender.hpp"
+#include "TreeStyleRender.hpp"
 
 using json = nlohmann::json;
 
 int main(int argc, char** argv) {
+  // 输出宽字符
+  setlocale(LC_ALL, "");
+
   // icon 配置文件 请使用绝对路径
   std::string icon_file_path = "./icon_config.json";
-  // argparse 设置 
+  // argparse 设置
   argparse::ArgumentParser program("FJE");
   program.add_argument("-f").help("json file to be parsed");
 
@@ -31,8 +35,7 @@ int main(int argc, char** argv) {
       });
 
   // n icons 根据 配置文件显示
-  json icon_config = json::parse(
-      std::ifstream(icon_file_path));
+  json icon_config = json::parse(std::ifstream(icon_file_path));
   std::vector<std::string> iconNames;
   for (auto it = icon_config.begin(); it != icon_config.end(); ++it) {
     iconNames.push_back(it.key());
@@ -82,7 +85,6 @@ int main(int argc, char** argv) {
   // 解析json文件
   json data = json::parse(json_file);
   // 根据style选择工厂
-  std::unique_ptr<JsonStyleFactory> factory = JsonFactory::getFactory(style);
   // 根据配置文件的icon 设置全局唯一的icon实例
   for (auto it = icon_config.begin(); it != icon_config.end(); ++it) {
     if (it.key() == iconStyle) {
@@ -93,7 +95,17 @@ int main(int argc, char** argv) {
     }
   }
 
-  // 创建FJE并显示相应风格json
-  FunnyJsonExplorer fje(std::move(factory));
-  fje.show(data);
+  // 简单起见 不使用工厂
+  std::shared_ptr<StyleRender> render;
+  if (style == "rectangle") {
+    render = std::make_shared<RectangleStyleRender>();
+  } else {
+    render = std::make_shared<TreeStyleRender>();
+  }
+
+  auto visitor = render->create();
+  JsonNode node(data);
+  node.accept(*visitor);
+  std::wstring result = render->get_rendered_content();
+  std::wcout << result << std::endl;
 }
