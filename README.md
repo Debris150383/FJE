@@ -2,7 +2,6 @@
 a json file visualized command line interface tool
 
 # Installation
-重构版本切换至refactor分支
 ```bash
 git clone --recurse-submodules https://github.com/Debris150383/FJE.git
 # external/json has a .git directory, remove it
